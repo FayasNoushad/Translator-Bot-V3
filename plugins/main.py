@@ -375,6 +375,10 @@ async def translate(bot, update, text):
                     document=translate_file
                 )
                 await message.delete()
+                try:
+                    os.remove(translate_file)
+                except:
+                    pass
     except Exception as error:
         print(error)
         await message.edit_text("Something wrong. Contact @TheFayas.")
