@@ -34,5 +34,7 @@ python3 main.py
 - [Fayas Noushad](https://github.com/FayasNoushad)
 - [Pyrogram](https://github.com/pyrogram/pyrogram)
 - [Google Translator](https://translate.google.com)
+- [Translator-Bot](https://github.com/FayasNoushad/Translator-Bot)
+- [Translator-Bot-V2](https://github.com/FayasNoushad/Translator-Bot-V2)
 
 ---
