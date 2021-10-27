@@ -7,6 +7,15 @@ License -> https://github.com/FayasNoushad/Translator-Bot-V3/blob/main/LICENSE
 
 ---
 
+## Advanced Features
+
+    - Database ( MongoDB ) Support
+    - Broadcast Support
+    - Saving default language support
+    - Direct languages updation from Python Translate Package
+
+---
+
 ## Deploy
 
 ```sh
