@@ -3,7 +3,7 @@
 import os
 from .admin import Database, db, BOT_OWNER
 from io import BytesIO
-from pyrogram import Client, filters
+from pyrogram import Client, filters, enums
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from googletrans import Translator, constants
 
@@ -339,7 +339,7 @@ async def get_message(_, message):
 
 
 async def translate(update, text):
-    await update.reply_chat_action("typing")
+    await update.reply_chat_action(enums.ChatAction.TYPING)
     message = await update.reply_text("`Translating...`")
     try:
         language = await db.get_lang(update.from_user.id)
