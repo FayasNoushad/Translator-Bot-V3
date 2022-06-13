@@ -14,7 +14,7 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import FloodWait, InputUserDeactivated, UserIsBlocked, PeerIdInvalid, UserNotParticipant, UserBannedInChannel
 from pyrogram.errors.exceptions.bad_request_400 import PeerIdInvalid
-
+from main import DEFAULT_LANGUAGE
 
 class Database:
     def __init__(self, url, database_name):
@@ -24,7 +24,7 @@ class Database:
         self.cache = {}
     
     def new_user(self, id):
-        return {"id": id, "language": "en"}
+        return {"id": id, "language": DEFAULT_LANGUAGE}
     
     async def add_user(self, id):
         user = self.new_user(id)
@@ -57,9 +57,7 @@ class Database:
     async def get_lang(self, id):
         user = await self.col.find_one({'id': int(id)})
         if user:
-            return user.get("language", "en")
-        else:
-            return "en"
+            return user.get("language", DEFAULT_LANGUAGE)
 
     async def update_lang(self, id, language):
         await self.col.update_one(
