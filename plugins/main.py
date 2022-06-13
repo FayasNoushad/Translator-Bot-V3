@@ -43,8 +43,6 @@ ABOUT_TEXT = """--**About Me 😎**--
 
 📢 **Channel :** [Fayas Noushad](https://telegram.me/FayasNoushad)
 
-👥 **Group :** [Developer Team](https://telegram.me/TheDeveloperTeam)
-
 🌐 **Source :** [👉 Click here](https://github.com/FayasNoushad/Translator-Bot-V3)
 
 📝 **Language :** [Python3](https://python.org)
@@ -122,47 +120,42 @@ def Language_buttons():
 
 
 START_BUTTONS = InlineKeyboardMarkup(
-        [[
-        InlineKeyboardButton('⚙ Help', callback_data='help'),
-        InlineKeyboardButton('About 🔰', callback_data='about'),
-        InlineKeyboardButton('Close ✖️', callback_data='close')
-        ]]
-    )
+    [
+        [
+            InlineKeyboardButton('⚙ Help', callback_data='help'),
+            InlineKeyboardButton('About 🔰', callback_data='about'),
+            InlineKeyboardButton('Close ✖️', callback_data='close')
+        ]
+    ]
+)
 
 HELP_BUTTONS = InlineKeyboardMarkup(
-        [[
-        InlineKeyboardButton(
-            text="📹 Video Tutorial",
-            url="https://www.youtube.com/watch?v=C2TBW_DNCGg"
-        )
-        ],[
-        InlineKeyboardButton('🏘 Home', callback_data='home'),
-        InlineKeyboardButton('About 🔰', callback_data='about'),
-        InlineKeyboardButton('Close ✖️', callback_data='close')
-        ]]
-    )
+    [
+        [
+            InlineKeyboardButton('🏘 Home', callback_data='home'),
+            InlineKeyboardButton('About 🔰', callback_data='about'),
+            InlineKeyboardButton('Close ✖️', callback_data='close')
+        ]
+    ]
+)
 
 ABOUT_BUTTONS = InlineKeyboardMarkup(
-        [[
-        InlineKeyboardButton('🏘 Home', callback_data='home'),
-        InlineKeyboardButton('Help ⚙', callback_data='help'),
-        InlineKeyboardButton('Close ✖️', callback_data='close')
-        ]]
-    )
+    [
+        [
+            InlineKeyboardButton('🏘 Home', callback_data='home'),
+            InlineKeyboardButton('Help ⚙', callback_data='help'),
+            InlineKeyboardButton('Close ✖️', callback_data='close')
+        ]
+    ]
+)
 
 SETTINGS_BUTTONS = InlineKeyboardMarkup(
         Language_buttons()[0]
     )
 
-CLOSE_BUTTON = InlineKeyboardMarkup(
-        [[
-        InlineKeyboardButton('Close', callback_data='close')
-        ]]
-    )
+CLOSE_BUTTON = InlineKeyboardMarkup([[InlineKeyboardButton('Close', callback_data='close')]])
 
-TRANSLATE_BUTTON = InlineKeyboardMarkup(
-        [BUTTONS]
-    )
+TRANSLATE_BUTTON = InlineKeyboardMarkup([BUTTONS])
 
 DEFAULT_LANGUAGE = os.environ.get("DEFAULT_LANGUAGE", "en")
 
@@ -339,19 +332,13 @@ async def command_filter(bot, update):
     await translate(bot, update, text)
 
 
-@Client.on_message(filters.private & filters.text)
-async def text_filter(bot, update):
-    text = update.text
-    await translate(bot, update, text)
+@Client.on_message(filters.private & (filters.text | filters.caption))
+async def get_message(_, message):
+    text = message.text if message.text else message.caption
+    await translate(message, text)
 
 
-@Client.on_message(filters.private & filters.caption)
-async def caption_filter(bot, update):
-    text = update.caption
-    await translate(bot, update, text)
-
-
-async def translate(bot, update, text):
+async def translate(update, text):
     await update.reply_chat_action("typing")
     message = await update.reply_text("`Translating...`")
     try:
