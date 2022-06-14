@@ -14,7 +14,7 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import FloodWait, InputUserDeactivated, UserIsBlocked, PeerIdInvalid, UserNotParticipant, UserBannedInChannel
 from pyrogram.errors.exceptions.bad_request_400 import PeerIdInvalid
-from .main import DEFAULT_LANGUAGE
+from .vars import DEFAULT_LANGUAGE, BOT_OWNER
 
 
 class Database:
@@ -66,12 +66,6 @@ class Database:
         )
 
 
-BOT_OWNER = int(os.environ.get("BOT_OWNER"))
-DATABASE = os.environ.get("DATABASE_URL")
-db = Database(DATABASE)
-broadcast_ids = {}
-
-
 async def send_msg(user_id, message):
     try:
         await message.copy(chat_id=user_id)
@@ -90,7 +84,7 @@ async def send_msg(user_id, message):
 
 
 @Client.on_message(filters.private & filters.command("broadcast") & filters.user(BOT_OWNER) & filters.reply)
-async def broadcast(bot, update):
+async def broadcast(bot, update, broadcast_ids={}):
 	all_users = await db.get_all_users()
 	broadcast_msg = update.reply_to_message
 	while True:
