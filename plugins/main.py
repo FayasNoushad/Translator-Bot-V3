@@ -1,7 +1,7 @@
 # Author: Fayas (https://github.com/FayasNoushad) (@FayasNoushad)
 
 import os
-from .admin import db
+from .vars import DEFAULT_LANGUAGE
 from io import BytesIO
 from pyrogram import Client, filters, enums
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
@@ -156,8 +156,6 @@ SETTINGS_BUTTONS = InlineKeyboardMarkup(
 CLOSE_BUTTON = InlineKeyboardMarkup([[InlineKeyboardButton('Close', callback_data='close')]])
 
 TRANSLATE_BUTTON = InlineKeyboardMarkup([BUTTONS])
-
-DEFAULT_LANGUAGE = os.environ.get("DEFAULT_LANGUAGE", "en")
 
 
 @Client.on_callback_query()
