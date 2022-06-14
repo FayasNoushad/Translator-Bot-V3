@@ -1,7 +1,7 @@
 # Author: Fayas (https://github.com/FayasNoushad) (@FayasNoushad)
 
 import os
-from .vars import DEFAULT_LANGUAGE
+from .vars import db, DEFAULT_LANGUAGE
 from io import BytesIO
 from pyrogram import Client, filters, enums
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
