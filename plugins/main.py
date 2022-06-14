@@ -1,7 +1,7 @@
 # Author: Fayas (https://github.com/FayasNoushad) (@FayasNoushad)
 
 import os
-from .admin import Database, db, BOT_OWNER
+from .admin import db
 from io import BytesIO
 from pyrogram import Client, filters, enums
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
