@@ -16,9 +16,10 @@ from pyrogram.errors import FloodWait, InputUserDeactivated, UserIsBlocked, Peer
 from pyrogram.errors.exceptions.bad_request_400 import PeerIdInvalid
 from .main import DEFAULT_LANGUAGE
 
+
 class Database:
-    def __init__(self, url, database_name):
-        self._client = motor.motor_asyncio.AsyncIOMotorClient(url)
+    def __init__(self, uri, database_name="Translator-Bot"):
+        self._client = motor.motor_asyncio.AsyncIOMotorClient(uri)
         self.db = self._client[database_name]
         self.col = self.db.users
         self.cache = {}
@@ -67,7 +68,7 @@ class Database:
 
 BOT_OWNER = int(os.environ.get("BOT_OWNER"))
 DATABASE = os.environ.get("DATABASE_URL")
-db = Database(DATABASE, "Translator-Bot")
+db = Database(DATABASE)
 broadcast_ids = {}
 
 
