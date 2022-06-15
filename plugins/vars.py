@@ -1,4 +1,4 @@
-from .admin import Database
+from plugins.admin import Database
 
 
 BOT_OWNER = int(os.environ.get("BOT_OWNER"))
