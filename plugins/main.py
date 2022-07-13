@@ -1,7 +1,7 @@
 # Author: Fayas (https://github.com/FayasNoushad) (@FayasNoushad)
 
 import os
-from .vars import db, DEFAULT_LANGUAGE
+from .vars import DATABASE, DEFAULT_LANGUAGE
 from io import BytesIO
 from pyrogram import Client, filters, enums
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
@@ -54,6 +54,8 @@ ABOUT_TEXT = """--**About Me 😎**--
 SETTINGS_TEXT = "Select your language for translating. Current default language is `{}`."
 
 BUTTONS = [InlineKeyboardButton('⚙ Join Updates Channel ⚙', url='https://telegram.me/FayasNoushad')]
+
+db = Database(DATABASE)
 
 LANGUAGES = constants.LANGUAGES
 
