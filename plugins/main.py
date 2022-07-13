@@ -2,6 +2,7 @@
 
 import os
 from .vars import DATABASE, DEFAULT_LANGUAGE
+from .admin import Database
 from io import BytesIO
 from pyrogram import Client, filters, enums
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
