@@ -250,7 +250,7 @@ async def about(bot, update):
 
 @Client.on_message(filters.command(["set", "settings"]))
 async def settings(bot, update):
-    if update.chat.type != "PRIVATE":
+    if update.chat.type != enums.ChatType.PRIVATE:
         reply_markup = InlineKeyboardMarkup(
             [
                 [
