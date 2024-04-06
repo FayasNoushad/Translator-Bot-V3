@@ -3,12 +3,26 @@ An advanced telegram language translator bot
 
 ---
 
-## Advanced Features
+## Features
 
     - Database ( MongoDB ) Support
     - Broadcast Support
-    - Saving default language support
-    - Direct languages updation from Python Translate Package
+    - Set default language support
+    - Direct languages updation from Python Translation Library
+
+---
+
+## Deploy
+
+```sh
+git clone https://github.com/FayasNoushad/Translator-Bot-V3.git
+cd Translator-Bot
+python3 -m venv venv
+. ./venv/bin/activate
+pip3 install -r requirements.txt
+# <Create Variables appropriately>
+python3 main.py
+```
 
 ---
 
