@@ -1,9 +1,9 @@
 import motor.motor_asyncio
-from .vars import DEFAULT_LANGUAGE, DATABASE
+from .vars import DEFAULT_LANGUAGE, DATABASE_URL, DATABASE_NAME
 
 
 class Database:
-    def __init__(self, uri, database_name="Translator-Bot"):
+    def __init__(self, uri=DATABASE_URL, database_name=DATABASE_NAME):
         self._client = motor.motor_asyncio.AsyncIOMotorClient(uri)
         self.db = self._client[database_name]
         self.col = self.db.users
@@ -51,4 +51,4 @@ class Database:
         )
 
 
-db = Database(DATABASE)
+db = Database()

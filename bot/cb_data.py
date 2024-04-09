@@ -31,13 +31,13 @@ async def cb_data(_, message):
             language = message.data.split("+")[1]
             await db.update_lang(message.from_user.id, language)
             lang_text = f"{LANGUAGES[language].capitalize()} ({language})"
+            alert_text = f"Language changed to {lang_text}"
+            await message.answer(text=alert_text, show_alert=True)
             await message.message.edit_text(
                 text=SETTINGS_TEXT.format(await db.get_lang(message.from_user.id)),
                 disable_web_page_preview=True,
                 reply_markup=message.message.reply_markup
             )
-            alert_text = f"Language changed to {language}"
-            await message.answer(text=alert_text, show_alert=True)
         except Exception as error:
             if 'MESSAGE_NOT_MODIFIED' in str(error):
                 return
